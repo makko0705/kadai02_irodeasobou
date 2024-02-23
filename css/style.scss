@@ -1,0 +1,212 @@
+$red: #f00;
+$blue: #00f;
+$yellow: #ff0;
+$border: #fff solid 4px;
+
+body {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-align: center;
+    font-family: "Noto Sans JP", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400; //from 100 to 900
+    font-style: normal;
+}
+header {
+    background:url(../img/bg_table.png);
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    display: table;
+    position: absolute;
+    z-index: 100;
+    h1 {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+.color_box_wrapper {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+}
+
+#wrapper {
+    width: 800px;
+    margin: 0 auto;
+    position: relative;
+    padding: 40px;
+}
+.btn_wrapper {
+    display: flex;
+    justify-content: center;
+}
+.btn_area {
+    display: flex;
+    .btn {
+        width: 116px;
+        height:126px;
+        margin:0 10px;
+        padding-top: 45px;
+    }
+}
+.btn_mazeru {
+    cursor: pointer;
+}
+main {
+    text-align: center;
+}
+
+.step01 {
+     transform: rotate(360deg) scale(1);
+     transition: transform 2s;
+}
+
+.step02 {
+    transform: rotate(0) scale(0);
+    transition: transform 2s;
+    position: absolute;
+    top: 0;
+    width: 800px;
+}
+
+.choosed_text_wrap {
+    span {
+        line-height: 66px;
+    }
+}
+
+.blend_color {
+    position: relative;
+    canvas {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: -1;
+    }
+    img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 1;
+    }
+    .bg_area {
+        position: absolute;
+        bottom: 40px;
+        left: 270px;
+        z-index: -1;
+    }
+}
+
+.btn {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 16px;
+    color: #fff;
+    border-radius: 10px;
+    margin: 10px;
+
+    &.choosed_text {
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+        font-size: 24px;
+        display: inline-block;
+    }
+}
+
+.btn_red {
+    background: rgba($red, .6);
+}
+
+.btn_blue {
+    background: rgba($blue, .6);
+}
+
+.btn_yellow {
+    background: rgba($yellow, .6);
+    color: #555;
+}
+.color_box01 {
+    width: 50%;
+    position: relative;
+}
+
+.color_box02 {
+    width: 50%;
+}
+
+.girl {
+    width: 400px;
+    position: relative;
+}
+
+.boy {
+    width: 400px;
+    position: relative;
+    z-index: 1;
+}
+
+.draw_color {
+    position: absolute;
+    left: 82px;
+    bottom: 30px;
+    z-index: -1;
+}
+
+.bg_area {
+    width: 235px;
+    height: 80px;
+}
+
+.bg_red {
+    background: rgba($red, 0.5);
+}
+
+.bg_blue {
+    background: rgba($blue, 0.4);
+}
+
+.bg_yellow {
+    background: rgba($yellow, 0.7);
+}
+canvas {
+    margin-bottom: 20px;
+}
+#msg {
+    background:url(../img/bg_table.png);
+    width: 400px;
+    margin: 0 auto;
+    padding: 40px;
+    box-sizing: border-box;
+    border-radius: 14px;
+    background-size: cover;
+    h3 {
+        margin-bottom: 30px;
+    }
+}
+table {
+    border-collapse: separate;
+    border-left:$border;
+    border-top:$border;
+    border-radius: 8px;
+    width: 100%;;
+
+    th {
+        padding: 20px;
+        width: 50%;
+        border-bottom:$border;
+        border-right:$border;
+    }
+    td {
+        padding: 20px;
+        width: 50%;
+        border-bottom:$border;
+        border-right:$border;
+    }
+    #bg_hex {
+        border-radius: 0 0 8px;
+    }
+}

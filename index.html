@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <title>色を混ぜよう</title>
+</head>
+
+<body>
+    <header class="header">
+        <h1><img src="img/h1.png" alt="色で遊ぼう"></h1>
+    </header>
+    <div id="wrapper">
+        <div class="color_box_wrapper step01">
+
+            <div class="color_box01">
+                <h2><img src="img/h2_01.png" alt="何をまぜる？"></h2>
+                <div class="girl">
+                    <p><img src="img/bijutsu_suisai_girl.png"></p>
+                    <p class="draw_color"></p>
+                </div>
+                <div class="choosed_text_wrap"><span>わたしが選んだのは</span><span class="choosed_text btn"></span></div>
+
+            </div>
+
+            <div class="color_box02">
+                <h2><img src="img/h2_02.png" alt="ぼくはこれ！"></h2>
+                <div class="boy">
+                    <p><img src="img/bijutsu_suisai_boy.png"></p>
+                    <p class="draw_color"></p>
+                </div>
+                <div class="choosed_text_wrap"><span>彼が選んだのは</span><span class="choosed_text btn"></span></div>
+            </div>
+        </div>
+        <div class="btn_wrapper">
+            <ul class="btn_area">
+                <li class="btn" data-color01="red"><img src="img/btn_red.png" alt="あか"></li>
+                <li class="btn" data-color01="blue"><img src="img/btn_blue.png" alt="あお"></li>
+                <li class="btn" data-color01="yellow"><img src="img/btn_yellow.png" alt="きいろ"></li>
+            </ul>
+            <p class="btn_mazeru" id="btn_mazeru"><img src="img/btn_mazeru.png" alt="色をまぜる"></p>    
+        </div>
+
+        <div class="step02">
+            <h2><img src="img/h2_03.png" alt="上手にまざりました"></h2>
+            <canvas id="MyCanvas" width="408" height="400"></canvas>
+            <img id="img_test" src="img/bijutsu_suisai_danjo.png" style="display: none;">
+            <div id="msg">
+                <h3><img src="img/h2_04.png" alt="できたのはこんな色"></h3>
+                <table>
+                    <tr>
+                        <th>R</th>
+                        <td><span id="code_r"></span></td>
+                    </tr>
+                    <tr>
+                        <th>G</th>
+                        <td><span id="code_g"></span></td>
+                    </tr>
+                    <tr>
+                        <th>B</th>
+                        <td><span id="code_b"></span></td>
+                    </tr>
+                    <tr>
+                        <th>カラーコード</th>
+                        <td id="bg_hex"><span id="code_hex"></span></td>
+                    </tr>
+            </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+
+    </footer>
+
+    <script>
+           $(".btn_mazeru").hide();
+           $(".header").on("click", function () {
+                $(this).fadeOut(800);
+           });
+
+        $(".btn").on("click", function () {
+
+            const color01 = $(this).data('color01');
+            const com_r = Math.floor(Math.random() * 3); //ランダムで数を3つ出して
+            var com_which = ['red','blue','yellow']; //上で出した数に色を割り当てる
+            var color02 = com_which[com_r]; //コンピュータが選んだ色
+            var blend_color = [color01,color02]; //判別のために配列を作る
+            console.log(blend_color);
+
+            if (color01 == "red" && color02 == "red" ) {
+                $("#img_test").attr('src','img/bijutsu_suisai_danjo_redred.png');
+                $("#code_hex").css("color","#fff");
+            }
+            if (color01 == "blue" && color02 == "blue" ) {
+                $("#img_test").attr('src','img/bijutsu_suisai_danjo_blueblue.png');
+                $("#code_hex").css("color","#fff");
+
+            }
+            if (color01 == "yellow" && color02 == "yellow" ) {
+                $("#img_test").attr('src','img/bijutsu_suisai_danjo_yellowyellow.png');
+            }
+            if (color01 == "red" && color02 == "blue") {
+                $("#img_test").attr('src','img/bijutsu_suisai_danjo_redblue.png');
+            }
+            if (color01 == "blue" && color02 == "red") {
+                $("#img_test").attr('src','img/bijutsu_suisai_danjo_redblue.png');
+            }
+            if (color01 == "blue" && color02 == "yellow") {
+                $("#img_test").attr('src','img/bijutsu_suisai_danjo_blueyellow.png');
+            }
+            if (color01 == "yellow" && color02 == "blue") {
+                $("#img_test").attr('src','img/bijutsu_suisai_danjo_blueyellow.png');
+            }
+            if (color01 == "red" && color02 == "yellow") {
+                $("#img_test").attr('src','img/bijutsu_suisai_danjo_redyellow.png');
+            }
+            if (color01 == "yellow" && color02 == "red") {
+                $("#img_test").attr('src','img/bijutsu_suisai_danjo_redyellow.png');
+            }
+            
+
+            const draw_color =' <div class="bg_' + color01 + ' bg_area"></div>';
+            const choosed_text = '<img src="img/btn_'+ color01 + '.png">';
+            const com_draw_color = ' <div class="bg_' + color02 + ' bg_area"></div>';
+            const com_choosed_text = '<img src="img/btn_'+ color02 + '.png">';
+
+            $(".btn_mazeru").show();
+            $(".color_box01 .draw_color").html(draw_color);
+            $(".color_box01 .choosed_text").html(choosed_text);
+            $(".color_box02 .draw_color").html(com_draw_color);
+            $(".color_box02 .choosed_text").html(com_choosed_text);
+            $(".blend_color").prepend(draw_color);
+            $(".blend_color").append(com_draw_color);
+
+
+        });
+        $(".btn_mazeru").on("click", function () {
+            $(".step01").css({ transform: "rotate(0deg) scale(0)" });
+            $(".step02").css({ transform: "rotate(360deg) scale(1)" });
+            $(".btn_wrapper").hide();
+        });
+
+
+
+
+
+//ここからcamvasの設定
+      // RGBから#ffffff形式へ変換する
+      function RGB2bgColor(r,g,b) {
+     
+     r = r.toString(16);
+     if (r.length == 1) r = "0" + r;
+  
+     g = g.toString(16);
+     if (g.length == 1) g = "0" + g;
+  
+     b = b.toString(16);
+     if (b.length == 1) b = "0" + b;
+  
+     return '#' + r + g + b;  
+   }  
+   
+   var canvas = document.getElementById("MyCanvas");
+   var bg_hex = document.getElementById("bg_hex");
+   var mazeru = document.getElementById("btn_mazeru");
+
+   console.log(canvas);
+
+   if (canvas.getContext) {
+     // コンテキストの取得
+     var ctx = canvas.getContext("2d");                
+     var image = document.getElementById("img_test");
+  
+     image.onload = function () {
+       
+       // キャンバスをクリア
+       ctx.clearRect(0, 0, canvas.width, canvas.height); 
+       
+       // キャンバスの中心に画像を描画
+       var x = (canvas.width - image.width) / 2;
+       var y = (canvas.height - image.height) / 2;      
+       ctx.drawImage(image, x, y);
+     };
+   }
+  
+   mazeru.onclick = function(evt){
+   
+     //  マウス座標の取得
+     // var x = parseInt(evt.offsetX);
+     // var y = parseInt(evt.offsetY);
+
+     var x = 207; //ここを背景の場所にすればいい
+     var y = 316;
+  
+     //  指定座標のImageDataオブジェクトの取得 
+     var imagedata = ctx.getImageData(x, y, 1, 1);
+  
+     //  RGBAの取得
+     var r = imagedata.data[0];        
+     var g = imagedata.data[1];
+     var b = imagedata.data[2];
+     var a = imagedata.data[3];
+     
+    bg_hex.style.backgroundColor = RGB2bgColor(r,g,b);
+    document.getElementById("code_r").innerHTML =  r ;
+    document.getElementById("code_g").innerHTML =  g ;
+    document.getElementById("code_b").innerHTML =  b ;
+    document.getElementById("code_hex").innerHTML =  RGB2bgColor(r,g,b) ;       
+       
+   }
+
+</script>
+</body>
+
+</html>
